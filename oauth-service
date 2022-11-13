@@ -1,0 +1,24 @@
+spring.application.name=oauth-service
+
+server.port=${PORT:0}
+
+spring.jpa.show-sql=true
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/oauthdb
+spring.datasource.username=postgres
+spring.datasource.password=sasa
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQL10Dialect
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=update
+
+logging.level.org.hibernate.SQL=debug
+
+## Fix Postgres JPA Error (Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented). ##
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+
+eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+#Ubicacion en donde se encuentra el servidor de eureka para que le pase los servicios registrados
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
